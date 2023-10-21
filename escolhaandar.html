@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Selecionar Sala</title>
+</head>
+<body>
+    <h1>Selecione uma Sala</h1>
+    <div id="sala-info">
+        <h2>Informações das Salas do Andar Selecionado</h2>
+        <div id="andar-options">
+            <h3>Selecione um andar:</h3>
+            <label><input type="radio" name="andar" value="Terreo"> Térreo</label><br>
+            <label><input type="radio" name="andar" value="Andar1"> 1º andar</label><br>
+            <label><input type="radio" name="andar" value="Andar2"> 2º andar</label><br>
+            <label><input type="radio" name="andar" value="Andar3"> 3º andar</label><br>
+            <label><input type="radio" name="andar" value="Andar4"> 4º andar</label><br>
+            <label><input type="radio" name="andar" value="CO"> CO</label><br>
+        </div>
+        <div id="erro-sala" style="color: red;"></div>
+        <button id="proximo">Próximo</button>
+    </div>
+
+    <script>
+        document.getElementById('andar-options').addEventListener('change', function() {
+            // Habilitar o botão "Próximo" quando um andar é selecionado
+            const proximoBotao = document.getElementById('proximo');
+            proximoBotao.style.display = 'block'; // Opcional, você pode removê-lo se preferir que o botão esteja sempre visível
+        });
+
+        document.getElementById('proximo').addEventListener('click', function() {
+            const andarSelecionado = document.querySelector('input[name="andar"]:checked').value;
+            window.location.href = andarSelecionado + '.html';
+        });
+    </script>
+</body>
+</html>

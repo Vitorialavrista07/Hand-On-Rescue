@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Sala</title>
+</head>
+<body>
+    <h1>Selecione uma Sala</h1>
+    <div id="sala-info">
+        <h2>Informações das Salas do Andar Selecionado</h2>
+        <form id="sala-form">
+            <div id="andar-options">
+                <h3>Selecione um andar:</h3>
+                <label><input type="radio" name="andar" value="Terreo"> Térreo</label><br>
+                <label><input type="radio" name="andar" value="Andar1"> 1º andar</label><br>
+                <!-- Adicione outras opções de andar aqui -->
+            </div>
+            <div id="erro-sala" style="color: red;"></div>
+            <div id="sala-options">
+                <!-- O conteúdo das salas será preenchido aqui dinamicamente -->
+            </div>
+            <input type="submit" value="Selecionar Sala">
+            <button id="proximo" style="display: none;">Próximo</button> <!-- Botão "Próximo" oculto inicialmente -->
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('sala-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário para atualizar a página
+
+            const blocoSelecionado = 'E/F';
+            const erroSala = document.getElementById('erro-sala');
+            erroSala.textContent = ''; // Limpa mensagens de erro anteriores
+
+            if (blocoSelecionado === 'E/F') {
+                const andarSelecionado = document.querySelector('input[name="andar"]:checked');
+
+                if (andarSelecionado) {
+                    const andar = andarSelecionado.value;
+
+                    // Habilitar o botão "Próximo" após a seleção do andar
+                    const proximoBotao = document.getElementById('proximo');
+                    proximoBotao.style.display = 'block';
+
+                    // Redirecionar para a página de andares
+                    window.location.href = 'andares.html';
+                }
+            } else {
+                erroSala.textContent = 'O site está em atualização.';
+            }
+        });
+
+        document.getElementById('proximo').addEventListener('click', function() {
+            const andarSelecionado = document.querySelector('input[name="andar"]:checked').value;
+            window.location.href = andarSelecionado + '.html';
+        });
+    </script>
+</body>
+</html>
